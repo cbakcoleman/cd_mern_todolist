@@ -2,6 +2,7 @@ import './App.css';
 import {useState} from 'react';
 
 import TaskView from './components/TaskView'
+import TaskForm from './components/TaskForm'
 
 function App() {
   // CREATE EMPTY LIST OF TASKS
@@ -27,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <h4>Add a new task!</h4>
+      <TaskForm addTasks={addTasks}/>
       <TaskView taskList={taskList}/>
     </div>
   );
