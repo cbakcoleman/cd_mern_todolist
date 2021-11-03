@@ -7,7 +7,12 @@ const TaskForm = (props) => {
     // FORM ONSUBMIT FUNCTION TO ADD NEW TASKS
     const createTask = (t) => {
         t.preventDefault();
-
+        // CREATE BOX AS OBJECT
+        // NOT WORKING?
+        // const thisnewTask = {
+        //     text: task,
+        //     complete: false
+        // }
         // CALL ON ADDTASKS FUNCTION (SEE APP.JS)
         props.addTasks(task);
 
@@ -18,7 +23,7 @@ const TaskForm = (props) => {
     return (
         <div>
             <hr />
-            <form onSubmit={t => createTask(t)}>
+            <form onSubmit={e=> createTask(e)}>
                 <div>
                     <label>Task: </label>
                     <input 

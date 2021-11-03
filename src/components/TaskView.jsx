@@ -1,15 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
+import './styles.css';
 
 // COMPONENT TO VIEW LIST OF TASKS
-const TaskView = (props) => {
-    // VAR TO SET CHECKED
-    const [checked, setChecked] = useState(false);
-
-    // FUNCTION TO CHANGE CHECKED
-    const changeChecked = () => {
-        setChecked(!checked);
-    }
+const TaskView = ({taskList, taskDelete}) => {
+    // DESTRUCTURING FUNCTIONS FROM APP.JS???
+    // DON'T FORGET TO PASS THESE FUNCTIONS THROUGH ON APP.JS
+     
 
 // USE MAP TO DISPLAY ALL ITEMS IN TASKLIST
     return (
@@ -17,18 +14,43 @@ const TaskView = (props) => {
             <hr/>
             <h4>Your tasks:</h4>
             {
-                props.taskList.map((task, idx) => {
+                taskList.map((task, idx) => {
                     return (
-                        <li key={idx}>
-                            {task}
-                            <input type="checkbox" 
-                            checked={checked}
-                            onChange={changeChecked}/>
-                        </li>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th 
+                                        class="tableColumn">
+                                        Task
+                                    </th>
+                                    <th 
+                                        class="tableColumn">
+                                        Completed?
+                                    </th>
+                                    <th 
+                                        class="tableColumn">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td key={idx}>{task}</td>
+                                    <td>
+                                        {/* <input type="checkbox"  checked={task} onChange={changeChecked}/> */}
+                                    </td>
+                                    <td>
+                                        <button onClick={(e) => {
+                                            taskDelete(idx);
+                                        }}>Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     )
                 })
             }
-            <p>Is {props.taskList.task} checked? {checked.toString()}</p>
+            {/* <p>Is {props.taskList.task} checked? {checked}</p> */}
         </div>
     )
 }
