@@ -8,7 +8,7 @@ function App() {
   // CREATE EMPTY LIST OF TASKS
   // INITIALLY PREPOPULATE LIST FOR TESTING
   const [taskList, setTaskList] = useState(
-    ([])
+    []
   )
 
   // TO CREATE NEW TASKLIST, ADD NEW TASK ITEM, UPDATE STATE
@@ -26,12 +26,12 @@ function App() {
   }
 
   // FUNCTION TO CHANGE CHECKED
-  // const changeChecked = (checkIdx) => {
-  //   console.log("idx to check", checkIdx)
-  //   const newTaskList = [...taskList];
-  //   newTaskList[checkIdx].complete = !newTaskList[checkIdx].complete;
-  //   setTaskList(newTaskList);
-  // }
+  const changeChecked = (checkIdx) => {
+    console.log("idx to check", checkIdx)
+    const newTaskList = [...taskList];
+    newTaskList[checkIdx].status = !newTaskList[checkIdx].status;
+    setTaskList(newTaskList);
+  }
 
   // FUNCTION TO DELETE TASK
   const taskDelete = (delIdx) => {
@@ -44,9 +44,10 @@ function App() {
 
   return (
     <div className="App">
+      {JSON.stringify(taskList)}
       <h4>Add a new task!</h4>
       <TaskForm addTasks={addTasks}/>
-      <TaskView taskList={taskList} taskDelete={taskDelete} />
+      <TaskView taskList={taskList} taskDelete={taskDelete} changeChecked={changeChecked} />
     </div>
   );
 }

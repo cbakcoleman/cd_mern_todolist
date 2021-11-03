@@ -1,43 +1,43 @@
 import React from 'react'
-import {useState} from 'react'
+import { useState } from 'react'
 import './styles.css';
 
 // COMPONENT TO VIEW LIST OF TASKS
-const TaskView = ({taskList, taskDelete}) => {
+const TaskView = ({ taskList, taskDelete, changeChecked }) => {
     // DESTRUCTURING FUNCTIONS FROM APP.JS???
     // DON'T FORGET TO PASS THESE FUNCTIONS THROUGH ON APP.JS
-     
 
-// USE MAP TO DISPLAY ALL ITEMS IN TASKLIST
+
+    // USE MAP TO DISPLAY ALL ITEMS IN TASKLIST
     return (
         <div>
-            <hr/>
+            <hr />
             <h4>Your tasks:</h4>
-            {
-                taskList.map((task, idx) => {
-                    return (
-                        <table>
-                            <thead>
+            <table>
+                <thead>
+                    <tr>
+                        <th
+                            className="tableColumn">
+                            Task
+                        </th>
+                        <th
+                            className="tableColumn">
+                            Completed?
+                        </th>
+                        <th
+                            className="tableColumn">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        taskList.map((task, idx) => {
+                            return (
                                 <tr>
-                                    <th 
-                                        class="tableColumn">
-                                        Task
-                                    </th>
-                                    <th 
-                                        class="tableColumn">
-                                        Completed?
-                                    </th>
-                                    <th 
-                                        class="tableColumn">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td key={idx}>{task}</td>
+                                    <td key={idx}>{task.text}</td>
                                     <td>
-                                        {/* <input type="checkbox"  checked={task} onChange={changeChecked}/> */}
+                                        <input type="checkbox" checked={task.status} onChange={() =>changeChecked(idx)} />
                                     </td>
                                     <td>
                                         <button onClick={(e) => {
@@ -45,11 +45,11 @@ const TaskView = ({taskList, taskDelete}) => {
                                         }}>Delete</button>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    )
-                })
-            }
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
             {/* <p>Is {props.taskList.task} checked? {checked}</p> */}
         </div>
     )

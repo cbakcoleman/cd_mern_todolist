@@ -7,14 +7,15 @@ const TaskForm = (props) => {
     // FORM ONSUBMIT FUNCTION TO ADD NEW TASKS
     const createTask = (t) => {
         t.preventDefault();
-        // CREATE BOX AS OBJECT
-        // NOT WORKING?
-        // const thisnewTask = {
-        //     text: task,
-        //     complete: false
-        // }
+        // CREATE TASK AS OBJECT W/DEFAULT BOOLEAN
+        // VALUE FOR COMPLETE
+        const myNewTask = {
+            text: task,
+            status: false
+        }
+
         // CALL ON ADDTASKS FUNCTION (SEE APP.JS)
-        props.addTasks(task);
+        props.addTasks(myNewTask);
 
         // RESET INPUT FIELDS:
         setTask("");
